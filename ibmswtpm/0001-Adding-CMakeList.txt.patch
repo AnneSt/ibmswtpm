@@ -1,0 +1,136 @@
+From e335dd5e0afdf70b4fb348b81ee63d8e22ea05d6 Mon Sep 17 00:00:00 2001
+From: Anne Strunck <anne.strunck@zuehlke.com>
+Date: Thu, 29 Mar 2018 08:50:33 +0200
+Subject: [PATCH] Adding CMakeList.txt
+
+---
+ CMakeLists.txt | 117 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 117 insertions(+)
+ create mode 100644 CMakeLists.txt
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+new file mode 100644
+index 0000000..014c209
+--- /dev/null
++++ b/CMakeLists.txt
+@@ -0,0 +1,117 @@
++cmake_minimum_required(VERSION 3.7)
++project(ibmswtpm)
++
++set(CMAKE_C_FLAGS "-DTPM_POSIX -DTPM_NUVOTON -D_POSIX -DNO_BIT_FIELD_STRUCTURES -ggdb -O0 -Wall -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wsign-compare ${CMAKE_C_FLAGS}")
++
++set(CRYPTO_LIBRARIES "crypto")
++
++find_package(Threads REQUIRED)
++
++include_directories(.)
++
++add_executable(ibmswtpm
++	AlgorithmCap.c
++	AlgorithmTests.c
++	AsymmetricCommands.c
++	Attest_spt.c
++	AttestationCommands.c
++	AuditCommands.c
++	Bits.c
++	BnConvert.c
++	BnEccData.c
++	BnMath.c
++	BnMemory.c
++	Cancel.c
++	CapabilityCommands.c
++	Clock.c
++	ClockCommands.c
++	CommandAudit.c
++	CommandCodeAttributes.c
++	CommandDispatcher.c
++	ContextCommands.c
++	Context_spt.c
++	CryptDes.c
++	CryptEccKeyExchange.c
++	CryptEccMain.c
++	CryptEccSignature.c
++	CryptHash.c
++	CryptHashData.c
++	CryptPrime.c
++	CryptPrimeSieve.c
++	CryptRand.c
++	CryptRsa.c
++	CryptSelfTest.c
++	CryptSym.c
++	CryptUtil.c
++	DA.c
++	DictionaryCommands.c
++	DuplicationCommands.c
++	EACommands.c
++	EncryptDecrypt_spt.c
++	Entity.c
++	Entropy.c
++	EphemeralCommands.c
++	ExecCommand.c
++	Global.c
++	Handle.c
++	HashCommands.c
++	Hierarchy.c
++	HierarchyCommands.c
++	IoBuffers.c
++	IntegrityCommands.c
++	Locality.c
++	LocalityPlat.c
++	ManagementCommands.c
++	Manufacture.c
++	Marshal.c
++	MathOnByteBuffers.c
++	Memory.c
++	NVCommands.c
++	NVDynamic.c
++	NVMem.c
++	NVReserved.c
++	NV_spt.c
++	Object.c
++	ObjectCommands.c
++	Object_spt.c
++	PCR.c
++	PP.c
++	PPPlat.c
++	PlatformData.c
++	Policy_spt.c
++	Power.c
++	PowerPlat.c
++	PrimeData.c
++	PropertyCap.c
++	RandomCommands.c
++	Response.c
++	ResponseCodeProcessing.c
++	RsaKeyCache.c
++	RunCommand.c
++	Session.c
++	SessionCommands.c
++	SessionProcess.c
++	SigningCommands.c
++	StartupCommands.c
++	SymmetricCommands.c
++	TPMCmdp.c
++	TPMCmds.c
++	TestingCommands.c
++	Ticket.c
++	Time.c
++	TpmFail.c
++	TpmSizeChecks.c
++	TpmToOsslDesSupport.c
++	TpmToOsslMath.c
++	TpmToOsslSupport.c
++	Unique.c
++	Unmarshal.c
++	Vendor_TCG_Test.c
++	ntc2lib.c
++	ntc2.c
++	TcpServerPosix.c
++        )
++
++target_link_libraries(ibmswtpm
++        ${CMAKE_THREAD_LIBS_INIT}
++        ${CRYPTO_LIBRARIES})
+--
+2.11.0
+
